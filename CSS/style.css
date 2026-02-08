@@ -1,0 +1,188 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#aside {
+    background-color: #4361EE;
+    height: 100vh;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-top: 20px;
+    color: white;
+}
+
+
+
+#menu{
+    padding: 20px;
+}
+
+#menu a {
+    padding: 15px;
+    text-decoration: none;
+    color: #ddd;
+    display: block;
+    transition: 0.3s;
+}
+
+#menu a:hover {
+    background-color: #2B4DA0;
+    color: white;
+    border-radius: 8px;
+    transition: 0.3s;
+    filter: brightness(0.9);
+}
+
+#menu ul li{
+    list-style: none;
+    padding: 15px 10px;
+    color: white;
+    cursor: pointer;
+}
+
+main{
+    margin-left: 250px;
+    padding: 20px;
+}
+
+header{
+    display: flex;
+    justify-content: space-between;
+    padding: 30px;
+}
+
+#btn-trans{
+    background-color: #4361EE;
+    color: white;
+    width: 150px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#btn-trans:hover{
+    background-color: #2B4DA0;
+    transition: 0.3s;
+    filter: brightness(0.9);
+}
+
+.cards-container {
+    display: flex;
+    gap: 20px;
+    padding: 30px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.card, .card-in, .card-out {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    min-width: 200px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.453);
+    text-align: center;
+}
+
+.value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 10px;
+    display: block;
+}
+
+.card-in .value {
+    color: #2EC4B6;
+}
+
+.card-out .value {
+    color: #E71D36;
+}
+
+table{
+    width: 98%;
+    margin: 20px;
+    border-collapse: collapse;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.152);
+    border-radius: 5px;
+}
+
+th, td{
+    text-align: left;
+    padding: 15px 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+#modal-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+
+
+/* Loading*/
+/* Container do Loading (cobre a tela toda) */
+#loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8); /* Fundo branco semi-transparente */
+    display: none; /* Escondido por padrão */
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Garante que fica por cima de tudo */
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* O círculo que gira */
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #4361EE; /* Cor azul do seu projeto */
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+#loading-overlay span {
+    font-family: sans-serif;
+    color: #4361EE;
+    font-weight: bold;
+}
+
+
+.btn-delete {
+    background: transparent;
+    border: none;
+    color: black; /* Cinza discreto */
+    cursor: pointer;
+    padding: 5px;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-delete:hover {
+    color: #E71D36; /* Vermelho apenas quando o usuário quer deletar */
+    transform: scale(1.1);
+}
+
+.btn-delete [data-lucide] {
+    width: 18px;
+    height: 18px;
+}

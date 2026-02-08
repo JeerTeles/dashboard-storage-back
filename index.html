@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/style.css">
+    <title>Dashboard</title>
+</head>
+<body>
+    <div id="loading-overlay">
+    <div class="spinner"></div>
+    <span>Processando dados...</span>
+    </div>
+   <aside id="aside">
+    <nav id="menu">
+        <ul>
+            <li>
+                <a id="ts" href="#">
+                    <i data-lucide="home"></i>
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                   <i data-lucide="arrow-right-left"></i>
+                   <span>Transações</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i data-lucide="bar-chart-3"></i>
+                    <span>Relatórios</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                   <i data-lucide="settings"></i>
+                   <span>Configurações</span>
+                </a>
+            </li>
+            <li id="btn-exportar">
+                <a href="#">
+                    <i data-lucide="download"></i>
+                    <span>Exportar Dados</span>
+                </a>
+            </li>
+            <li id="btn-importar">
+                <a href="#">
+                    <i data-lucide="upload"></i>
+                    <span>Importar Dados</span>
+                </a>
+            </li>
+            <input type="file" id="importar-arquivo" style="display: none;" accept=".json">
+        </ul>
+    </nav>
+   </aside>
+
+   <main>
+       <header>
+            <h1 id="saudacao">Olá, Estudante</h1>
+            <button type="submit" id="btn-trans">Adicionar Transação</button>
+       </header>
+       <section class="cards-container">
+            <div class="card">
+                <p>Saldo Total</p>
+                <p class="value">R$ 00</p>
+            </div>
+            <div class="card-in">
+                <p>Entradas</p>
+                <p class="value">R$ 00</p>
+            </div>
+            <div class="card-out">
+                <p>Saidas</p>
+                <p class="value">R$ 00</p>
+            </div>
+       </section>
+       <table>
+           <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Categoria</th>
+                <th>Data</th>
+                <th>Valor</th>
+                <th>Ações</th>
+            </tr>
+           </thead>
+           <tbody>
+
+           </tbody>
+       </table>
+
+        <div id="modal-container" style="display: none;">
+            <div class="modal-content">
+                <h2>Nova Transação</h2>
+                <input type="text" id="desc-trans" placeholder="Nome da Transação">
+                
+                <input type="text" id="categoria-trans" placeholder="Ex: Mercado, Aluguel, Salário">
+
+                <input type="number" id="valor-trans" placeholder="Valor (R$)">
+                
+                <select id="tipo-trans">
+                    <option value="entrada">Entrada</option>
+                    <option value="saida">Saída</option>
+                </select>
+
+                <div class="modal-buttons">
+                    <button id="salvar-btn">Salvar</button>
+                    <button id="cancelar-btn">Cancelar</button>
+                </div>
+            </div>
+        </div>  
+   </main>
+
+   <script>
+    lucide.createIcons();
+   </script>
+</body>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="JS/script.js"></script>
+</html>
