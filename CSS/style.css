@@ -186,3 +186,14 @@ th, td{
     width: 18px;
     height: 18px;
 }
+
+
+.input-trans {
+    background-color: red;
+    display: flex;
+}
+
+.modal-buttons {
+    background-color: #2B4DA0;
+    display: flex;
+}
