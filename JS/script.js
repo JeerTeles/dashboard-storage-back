@@ -43,7 +43,7 @@ btnSalvar.onclick = () => {
     
     // Atualizamos a interface
     renderizarTudo();
-
+    atualizarStatusBackup(true);
     modal.style.display = 'none';
     limparCampos();
 };
@@ -157,6 +157,7 @@ function deletarTransacao(id) {
             // 1. Filtra a lista (Sua lógica original)
             listaTransacoes = listaTransacoes.filter(t => t.id !== id);
 
+            atualizarStatusBackup(true);
             // 2. Salva e Renderiza
             salvarNoStorage(); 
             renderizarTudo();
@@ -195,6 +196,8 @@ btnExportar.onclick = () => {
     link.href = url;
     link.download = 'backup_financas.json';
     link.click();
+
+    atualizarStatusBackup(false);
 
     URL.revokeObjectURL(url); // Limpa a memória
 };
@@ -238,15 +241,17 @@ inputArquivo.onchange = (event) => {
     leitor.readAsText(arquivo);
 };
 
-// Detecta quando o usuário tenta fechar ou atualizar a página
-window.addEventListener('beforeunload', (event) => {
-    // Se a lista de transações não estiver vazia, exibimos o aviso
-    if (listaTransacoes.length > 0) {
-        // Cancelar o evento (padrão necessário para mostrar o aviso)
-        event.preventDefault();
-        
-        // Em navegadores modernos, o valor de retorno deve ser uma string vazia
-        // O navegador exibirá a caixa de diálogo padrão dele.
-        event.returnValue = '';
+// 1. Criamos a variável de controle
+let alteracoesPendentes = false;
+
+// 2. Função para ativar o alerta visual
+function atualizarStatusBackup(pendente) {
+    alteracoesPendentes = pendente;
+    const btnExportar = document.getElementById('btn-exportar');
+
+    if (alteracoesPendentes) {
+        btnExportar.classList.add('atencao-backup');
+    } else {
+        btnExportar.classList.remove('atencao-backup');
     }
-});
+}
