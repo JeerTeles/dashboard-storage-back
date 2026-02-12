@@ -186,3 +186,29 @@ th, td{
     width: 18px;
     height: 18px;
 }
+
+
+.input-trans {
+    display: flex;
+    height: 3vh;
+    gap: 3px;
+}
+
+.modal-buttons {
+    display: flex;
+    height: 3vh;
+    gap: 3px;
+}
+
+#salvar-btn, #cancelar-btn {
+    padding: 5px;
+    border-radius: 5px;
+}
+
+#desc-trans, #categoria-trans, #valor-trans, #tipo-trans {
+    border-radius: 5px;
+}
+
+#new-trans {
+    margin-bottom: 10px;
+}

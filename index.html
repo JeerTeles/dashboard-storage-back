@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="CSS/style.css">
     <title>Dashboard</title>
 </head>
@@ -91,21 +92,21 @@
 
         <div id="modal-container" style="display: none;">
             <div class="modal-content">
-                <h2>Nova Transação</h2>
-                <input type="text" id="desc-trans" placeholder="Nome da Transação">
-                
-                <input type="text" id="categoria-trans" placeholder="Ex: Mercado, Aluguel, Salário">
-
-                <input type="number" id="valor-trans" placeholder="Valor (R$)">
-                
-                <select id="tipo-trans">
-                    <option value="entrada">Entrada</option>
-                    <option value="saida">Saída</option>
-                </select>
-
-                <div class="modal-buttons">
-                    <button id="salvar-btn">Salvar</button>
-                    <button id="cancelar-btn">Cancelar</button>
+                <h2 id="new-trans">Nova Transação</h2>
+                <div class="input-trans">
+                    <input type="text" id="desc-trans" placeholder="Nome da Transação">
+                    
+                    <input type="text" id="categoria-trans" placeholder="Categoria">
+                    <input type="number" id="valor-trans" placeholder="Valor (R$)">
+                    
+                    <select id="tipo-trans">
+                        <option value="entrada">Entrada</option>
+                        <option value="saida">Saída</option>
+                    </select>
+                    <div class="modal-buttons">
+                        <button id="salvar-btn">Salvar</button>
+                        <button id="cancelar-btn">Cancelar</button>
+                    </div>
                 </div>
             </div>
         </div>  

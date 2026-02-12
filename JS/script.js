@@ -1,4 +1,3 @@
-// Selecionando os elementos
 const btnAbrirModal = document.getElementById('btn-trans');
 const modal = document.getElementById('modal-container');
 const btnSalvar = document.getElementById('salvar-btn');
@@ -9,16 +8,14 @@ btnAbrirModal.onclick = () => {
     modal.style.display = 'flex';
 };
 
-//LocalStorage
 // 1. Variável principal que armazenará nossos dados
 let listaTransacoes = JSON.parse(localStorage.getItem('minhas_transacoes')) || [];
 
-// 2. Função para salvar no LocalStorage
 function salvarNoStorage() {
     localStorage.setItem('minhas_transacoes', JSON.stringify(listaTransacoes));
 }
 
-// 3. Modificando o seu botão Salvar
+//Modificando o seu botão Salvar
 btnSalvar.onclick = () => {
     const nome = document.getElementById('desc-trans').value;
     const categoria = document.getElementById('categoria-trans').value;
@@ -46,7 +43,7 @@ btnSalvar.onclick = () => {
     
     // Atualizamos a interface
     renderizarTudo();
-
+    atualizarStatusBackup(true);
     modal.style.display = 'none';
     limparCampos();
 };
@@ -120,24 +117,18 @@ function renderizarTudo() {
             <td>${transacao.categoria}</td>
             <td>${transacao.data}</td>
             <td class="${classeCor}">${transacao.tipo === 'saida' ? '-' : ''} R$ ${transacao.valor.toFixed(2)}</td>
-
-            
             <td>
                 <button class="btn-delete" onclick="deletarTransacao(${transacao.id})">
                     <i data-lucide="trash-2"></i>
                 </button>
             </td>
             `;
+            
         tabelaBody.appendChild(novaLinha);
     });
 
-    /* Testes btnm delete*/
-    // Atualiza os cards
-    // Recarrega os ícones do Lucide para as novas lixeiras aparecerem
     lucide.createIcons();
 
-    // 3. O Pulo do Gato: Atualizando os elementos da tela
-    // Certifique-se de que os nomes das classes ou IDs batem com seu HTML
     document.querySelector('.card-in .value').innerText = `R$ ${totalEntradas.toFixed(2)}`;
     document.querySelector('.card-out .value').innerText = `R$ ${totalSaidas.toFixed(2)}`;
     
@@ -145,15 +136,44 @@ function renderizarTudo() {
     document.querySelector('.card .value').innerText = `R$ ${saldoFinal.toFixed(2)}`;
 }
 
-// --- FUNÇÃO PARA DELETAR ---
+// --- FUNÇÃO PARA DELETAR (ESTILIZADA) ---
 function deletarTransacao(id) {
-    if (confirm("Tem certeza que deseja excluir esta transação?")) {
-        // Filtra a lista removendo o item com o ID correspondente
-        listaTransacoes = listaTransacoes.filter(t => t.id !== id);
-        
-        salvarNoStorage(); // Salva a nova lista no LocalStorage
-        renderizarTudo();  // Reatualiza a tela
-    }
+    Swal.fire({
+        title: 'Excluir transação?',
+        text: "Você tem certeza que deseja remover este item?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#e74c3c', // Verde (ou use a cor do seu dashboard)
+        cancelButtonColor: '#4361EE',  // Vermelho',
+        confirmButtonText: 'Sim, excluir!',
+        cancelButtonText: 'Cancelar',
+        // Opcional: Estilo Dark para combinar com dashboards
+        background: '#1e1e1e',
+        color: '#ffffff'
+    }).then((result) => {
+        // Se o usuário clicou em "Sim"
+        if (result.isConfirmed) {
+            
+            // 1. Filtra a lista (Sua lógica original)
+            listaTransacoes = listaTransacoes.filter(t => t.id !== id);
+
+            atualizarStatusBackup(true);
+            // 2. Salva e Renderiza
+            salvarNoStorage(); 
+            renderizarTudo();
+
+            // 3. Feedback visual de que deu certo
+            Swal.fire({
+                title: 'Deletado!',
+                text: 'A transação foi removida.',
+                icon: 'success',
+                timer: 1500,
+                showConfirmButton: false,
+                background: '#1e1e1e',
+                color: '#ffffff'
+            });
+        }
+    });
 }
 
 // Salvar e carregar dados
@@ -177,6 +197,8 @@ btnExportar.onclick = () => {
     link.download = 'backup_financas.json';
     link.click();
 
+    atualizarStatusBackup(false);
+
     URL.revokeObjectURL(url); // Limpa a memória
 };
 
@@ -184,32 +206,6 @@ btnExportar.onclick = () => {
 btnImportar.onclick = () => {
     inputArquivo.click(); // Abre a janelinha de escolher arquivo
 };
-
-/*inputArquivo.onchange = (event) => {
-    const arquivo = event.target.files[0];
-    if (!arquivo) return;
-
-    const leitor = new FileReader();
-    leitor.onload = (e) => {
-        try {
-            const dadosImportados = JSON.parse(e.target.result);
-
-            if (Array.isArray(dadosImportados)) {
-                if (confirm("Isso irá substituir seus dados atuais. Deseja continuar?")) {
-                    listaTransacoes = dadosImportados;
-                    salvarNoStorage();
-                    renderizarTudo();
-                    alert("Dados importados com sucesso!");
-                }
-            } else {
-                alert("Arquivo inválido.");
-            }
-        } catch (erro) {
-            alert("Erro ao ler o arquivo JSON.");
-        }
-    };
-    leitor.readAsText(arquivo);
-};*/
 
 const loading = document.getElementById('loading-overlay');
 
@@ -244,3 +240,18 @@ inputArquivo.onchange = (event) => {
     
     leitor.readAsText(arquivo);
 };
+
+// 1. Criamos a variável de controle
+let alteracoesPendentes = false;
+
+// 2. Função para ativar o alerta visual
+function atualizarStatusBackup(pendente) {
+    alteracoesPendentes = pendente;
+    const btnExportar = document.getElementById('btn-exportar');
+
+    if (alteracoesPendentes) {
+        btnExportar.classList.add('atencao-backup');
+    } else {
+        btnExportar.classList.remove('atencao-backup');
+    }
+}
