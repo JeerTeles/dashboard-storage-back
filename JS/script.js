@@ -237,3 +237,16 @@ inputArquivo.onchange = (event) => {
     
     leitor.readAsText(arquivo);
 };
+
+// Detecta quando o usuário tenta fechar ou atualizar a página
+window.addEventListener('beforeunload', (event) => {
+    // Se a lista de transações não estiver vazia, exibimos o aviso
+    if (listaTransacoes.length > 0) {
+        // Cancelar o evento (padrão necessário para mostrar o aviso)
+        event.preventDefault();
+        
+        // Em navegadores modernos, o valor de retorno deve ser uma string vazia
+        // O navegador exibirá a caixa de diálogo padrão dele.
+        event.returnValue = '';
+    }
+});
