@@ -16,22 +16,6 @@
     color: white;
 }
 
-/* Usamos o ID #aside e #menu para dar peso máximo ao seletor */
-#aside #menu ul li.atencao-backup,
-#aside #menu ul li.atencao-backup a,
-#aside #menu ul li.atencao-backup i {
-    background-color: #ff9f1c !important;
-    color: white !important;
-    animation: pulsar-alerta 2s infinite;
-}
-
-/* Garante que o hover não mude a cor de fundo enquanto estiver em alerta */
-#aside #menu ul li.atencao-backup:hover,
-#aside #menu ul li.atencao-backup a:hover {
-    background-color: #e68a00 !important; /* Laranja mais escuro no hover */
-    filter: brightness(1.1);
-}
-
 #menu{
     padding: 20px;
 }
@@ -54,9 +38,8 @@
 
 #menu ul li{
     list-style: none;
-    /*padding: 15px 10px;*/
-    padding: 0; /* Removi o padding daqui para o link ocupar tudo */
-    border-radius: 8px; /* Arredondado para o hover e alerta ficarem bonitos */
+    padding: 0;
+    border-radius: 8px; 
     color: white;
     cursor: pointer;
 }
@@ -250,20 +233,6 @@ th, td{
     background-color: #E71D36;
     border-radius: 50%;
     border: 2px solid white;
-}
-
-/* Força o ponto vermelho a ficar visível */
-#aside #menu ul li.atencao-backup::after {
-    content: '';
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    width: 10px;
-    height: 10px;
-    background-color: #E71D36;
-    border-radius: 50%;
-    border: 2px solid white;
-    z-index: 99;
 }
 
 @keyframes pulsar-alerta {
