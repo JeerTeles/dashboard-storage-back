@@ -16,8 +16,6 @@
     color: white;
 }
 
-
-
 #menu{
     padding: 20px;
 }
@@ -40,7 +38,8 @@
 
 #menu ul li{
     list-style: none;
-    padding: 15px 10px;
+    padding: 0;
+    border-radius: 8px; 
     color: white;
     cursor: pointer;
 }
@@ -50,10 +49,32 @@ main{
     padding: 20px;
 }
 
-header{
+header {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; 
+    align-items: center;
     padding: 30px;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #ddd;
+}
+
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+#saudacao {
+    font-size: 1.5rem;
+    color: #2B2D42;
+    margin: 0;
+}
+
+#buttonDiv {
+    min-width: 200px;
+    display: flex;
+    align-items: center;
 }
 
 #btn-trans{
@@ -211,4 +232,33 @@ th, td{
 
 #new-trans {
     margin-bottom: 10px;
+}
+
+
+/* Classe que será adicionada via JS quando houver alterações não exportadas */
+.atencao-backup {
+    background-color: #ff9f1c !important; /* Um laranja vibrante para chamar a atenção */
+    color: white !important;
+    border-color: #ff9f1c !important;
+    position: relative;
+    animation: pulsar-alerta 2s infinite;
+}
+
+/* Um pequeno ponto vermelho no canto do botão */
+.atencao-backup::after {
+    content: '';
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 12px;
+    height: 12px;
+    background-color: #E71D36;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+@keyframes pulsar-alerta {
+    0% { box-shadow: 0 0 0 0 rgba(255, 159, 28, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(255, 159, 28, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 159, 28, 0); }
 }
