@@ -245,7 +245,7 @@ inputArquivo.onchange = (event) => {
 let alteracoesPendentes = false;
 
 // 2. Função para ativar o alerta visual
-function atualizarStatusBackup(pendente) {
+/*function atualizarStatusBackup(pendente) {
     alteracoesPendentes = pendente;
    const btnExportar = document.getElementById('btn-exportar');
 
@@ -254,4 +254,18 @@ function atualizarStatusBackup(pendente) {
     } else {
         btnExportar.classList.remove('atencao-backup');
     }   
+}*/
+
+function atualizarStatusBackup(pendente) {
+    alteracoesPendentes = pendente;
+    // IMPORTANTE: Verifique se o ID é 'btn-exportar' mesmo
+    const itemExportar = document.getElementById('btn-exportar');
+
+    if (itemExportar) {
+        if (alteracoesPendentes) {
+            itemExportar.classList.add('atencao-backup');
+        } else {
+            itemExportar.classList.remove('atencao-backup');
+        }
+    }
 }
