@@ -5,38 +5,6 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Seletor ultra-específico para vencer o CSS do Netlify */
-body #aside #menu ul li.atencao-backup,
-body #aside #menu ul li.atencao-backup a {
-    background-color: #ff9f1c !important;
-    color: white !important;
-    font-weight: bold !important;
-    animation: pulsar-alerta 2s infinite;
-    position: relative;
-    border-radius: 5px;
-}
-
-/* Garante que o ícone Lucide acompanhe a cor */
-body #aside #menu ul li.atencao-backup i,
-body #aside #menu ul li.atencao-backup svg {
-    stroke: white !important;
-    color: white !important;
-}
-
-/* Ponto de alerta (Garante que ele apareça sobre o link) */
-body #aside #menu ul li.atencao-backup::after {
-    content: '';
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    width: 10px;
-    height: 10px;
-    background-color: #E71D36;
-    border-radius: 50%;
-    border: 2px solid white;
-    z-index: 100;
-}
-
 #aside {
     background-color: #4361EE;
     height: 100vh;
@@ -81,10 +49,32 @@ main{
     padding: 20px;
 }
 
-header{
+header {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; 
+    align-items: center;
     padding: 30px;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #ddd;
+}
+
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+#saudacao {
+    font-size: 1.5rem;
+    color: #2B2D42;
+    margin: 0;
+}
+
+#buttonDiv {
+    min-width: 200px;
+    display: flex;
+    align-items: center;
 }
 
 #btn-trans{
