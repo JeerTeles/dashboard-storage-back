@@ -245,7 +245,7 @@ inputArquivo.onchange = (event) => {
 let alteracoesPendentes = false;
 
 // 2. Função para ativar o alerta visual
-/*function atualizarStatusBackup(pendente) {
+function atualizarStatusBackup(pendente) {
     alteracoesPendentes = pendente;
    const btnExportar = document.getElementById('btn-exportar');
 
@@ -254,18 +254,75 @@ let alteracoesPendentes = false;
     } else {
         btnExportar.classList.remove('atencao-backup');
     }   
-}*/
+}
 
-function atualizarStatusBackup(pendente) {
-    alteracoesPendentes = pendente;
-    // IMPORTANTE: Verifique se o ID é 'btn-exportar' mesmo
-    const itemExportar = document.getElementById('btn-exportar');
+// Autorization Google email
+// Função para decodificar o token do Google (JWT)
+function parseJwt(token) {
+    var base64Url = token.split('.')[1];
+    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
 
-    if (itemExportar) {
-        if (alteracoesPendentes) {
-            itemExportar.classList.add('atencao-backup');
-        } else {
-            itemExportar.classList.remove('atencao-backup');
-        }
+    return JSON.parse(jsonPayload);
+}
+
+// Função que o Google chama após o login
+function handleCredentialResponse(response) {
+    const data = parseJwt(response.credential);
+    
+    // data.name é o nome da sua conta Google!
+    const nomeGoogle = data.given_name; // Pega apenas o primeiro nome
+    
+    // Salva no LocalStorage para persistir
+    localStorage.setItem('usuario_google', nomeGoogle);
+    
+    atualizarSaudacaoReal(nomeGoogle);
+}
+
+window.onload = function () {
+    google.accounts.id.initialize({
+        client_id: "123536121301-m3v9o2c9ntcbrev5ra6nqv1nq1iocost.apps.googleusercontent.com",
+        callback: handleCredentialResponse
+    });
+
+    // Renderiza o botão oficial
+    google.accounts.id.renderButton(
+        document.getElementById("buttonDiv"),
+        { theme: "outline", size: "large" }
+    );
+
+    // Tenta carregar o nome já salvo
+    const nomeSalvo = localStorage.getItem('usuario_google');
+    if (nomeSalvo) {
+        atualizarSaudacaoReal(nomeSalvo);
     }
+}
+
+function atualizarSaudacaoReal(nome) {
+    const hora = new Date().getHours();
+    let cumprimento = hora < 12 ? "Bom dia" : hora < 18 ? "Boa tarde" : "Boa noite";
+    document.getElementById('saudacao').innerText = `${cumprimento}, ${nome}`;
+}
+
+window.onload = function () {
+  google.accounts.id.initialize({
+    client_id: "123536121301-m3v9o2c9ntcbrev5ra6nqv1nq1iocost.apps.googleusercontent.com",
+    callback: handleCredentialResponse
+  });
+
+  google.accounts.id.renderButton(
+    document.getElementById("buttonDiv"), // Crie uma <div id="buttonDiv"> no HTML
+    { theme: "outline", size: "large" }
+  );
+};
+
+function handleCredentialResponse(response) {
+  // Aqui vamos decodificar o nome do usuário
+  const payload = JSON.parse(atob(response.credential.split('.')[1]));
+  console.log("Nome do usuário:", payload.name);
+  
+  // Atualiza a saudação no seu Dashboard
+  document.getElementById('saudacao').innerText = `Olá, ${payload.given_name}`;
 }
