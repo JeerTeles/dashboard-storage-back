@@ -129,11 +129,11 @@ function renderizarTudo() {
 
     lucide.createIcons();
 
-    document.querySelector('.card-in .value').innerText = `R$ ${totalEntradas.toFixed(2)}`;
-    document.querySelector('.card-out .value').innerText = `R$ ${totalSaidas.toFixed(2)}`;
+    document.querySelector('.card-in .value').innerText = totalEntradas.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    document.querySelector('.card-out .value').innerText = totalEntradas.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
     
     const saldoFinal = totalEntradas - totalSaidas;
-    document.querySelector('.card .value').innerText = `R$ ${saldoFinal.toFixed(2)}`;
+    document.querySelector('.card .value').innerText = totalEntradas.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 }
 
 // --- FUNÇÃO PARA DELETAR (ESTILIZADA) ---
