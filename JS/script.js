@@ -292,6 +292,13 @@ window.onload = function () {
         atualizarSaudacaoReal(nomeSalvo);
     }
 
+    // 🔥 VERIFICAÇÃO DE PERSISTÊNCIA:
+    const usuarioSalvo = JSON.parse(localStorage.getItem('usuario_logado'));
+    
+    if (usuarioSalvo && usuarioSalvo.ativo) {
+        exibirDadosUsuario(usuarioSalvo.nome, usuarioSalvo.foto);
+    }
+
     // 3. 🔥 O SEGREDO: Verifica se o botão de exportar deve estar laranja
     verificarAlertaAoCarregar();
 }
@@ -321,4 +328,30 @@ function handleCredentialResponse(response) {
   
   // Atualiza a saudação no seu Dashboard
   document.getElementById('saudacao').innerText = `Olá, ${payload.given_name}`;
+
+  // Guardamos os dados no LocalStorage
+    localStorage.setItem('usuario_logado', JSON.stringify({
+        nome: payload.given_name,
+        foto: payload.picture,
+        ativo: true
+    }));
+
+    exibirDadosUsuario(payload.given_name, payload.picture);
+}
+
+function exibirDadosUsuario(nome, foto) {
+    const elementoSaudacao = document.getElementById('saudacao');
+    const hora = new Date().getHours();
+    let cumprimento = hora < 12 ? "Bom dia" : hora < 18 ? "Boa tarde" : "Boa noite";
+
+    if (elementoSaudacao) {
+        elementoSaudacao.innerHTML = `
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <img src="${foto}" style="width: 40px; border-radius: 50%;">
+                <span>${cumprimento}, ${nome}</span>
+            </div>
+        `;
+    }
+    // Esconde o botão do Google após logar
+    document.getElementById("buttonDiv").style.display = "none";
 }
