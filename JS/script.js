@@ -57,49 +57,6 @@ btnSalvar.onclick = () => {
 
 // 4. Função que desenha tudo na tela ao carregar ou atualizar
 function renderizarTudo() {
-    tabelaBody.innerHTML = ''; // Limpa a tabela para não duplicar
-    
-    let totalEntradas = 0;
-    let totalSaidas = 0;
-
-    listaTransacoes.forEach(transacao => {
-        // Lógica de soma para os cards
-        if (transacao.tipo === 'entrada') {
-            totalEntradas += transacao.valor;
-        } else {
-            totalSaidas  += transacao.valor;
-        }
-
-        // Adiciona a linha na tabela
-        const novaLinha = document.createElement('tr');
-        const classeCor = transacao.tipo === 'entrada' ? 'text-green' : 'text-red';
-
-        novaLinha.innerHTML = `
-            <td>${transacao.nome}</td>
-            <td>${transacao.categoria}</td>
-            <td>${transacao.data}</td>
-            <td class="${classeCor}">${transacao.tipo === 'saida' ? '-' : ''} R$ ${transacao.valor.toFixed(2)}</td>
-        `;
-        tabelaBody.appendChild(novaLinha);
-    });
-
-    // Atualiza os cards
-    atualizarCards(totalEntradas, totalSaidas);
-    
-    // Recarrega os ícones do Lucide para as novas lixeiras aparecerem
-    lucide.createIcons();
-
-    // Atualiza os Cards de Resumo
-    displayEntradas.innerText = `R$ ${totalEntradas.toFixed(2)}`;
-    displaySaidas.innerText = `R$ ${totalSaidas.toFixed(2)}`;
-    displaySaldo.innerText = `R$ ${(totalEntradas - totalSaidas).toFixed(2)}`;
-}
-
-// 5. Chamada inicial ao abrir a página
-renderizarTudo();
-
-
-function renderizarTudo() {
     tabelaBody.innerHTML = ''; 
     
     // Iniciamos os contadores do zero para recalcular
@@ -143,6 +100,9 @@ function renderizarTudo() {
     document.querySelector('.card-out .value').innerText = formatadorMoeda.format(totalSaidas);
     document.querySelector('.card .value').innerText = formatadorMoeda.format(totalEntradas - totalSaidas);
 }
+
+// 5. Chamada inicial ao abrir a página
+renderizarTudo();
 
 // --- FUNÇÃO PARA DELETAR (ESTILIZADA) ---
 function deletarTransacao(id) {
