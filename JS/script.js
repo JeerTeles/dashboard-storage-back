@@ -195,12 +195,26 @@ inputArquivo.onchange = (event) => {
                     listaTransacoes = dadosImportados;
                     salvarNoStorage();
                     renderizarTudo();
-                    alert("Dados importados com sucesso!");
+                    Swal.fire({
+                        title: 'Sucesso!',
+                        text: 'Seus dados foram carregados com sucesso.',
+                        icon: 'success',
+                        timer: 3000,
+                        showConfirmButton: false,
+                        background: '#1e1e1e',
+                        color: '#ffffff'
+                    });
                 }
             } catch (erro) {
-                alert("Erro ao ler o arquivo.");
+                Swal.fire({
+                title: 'Erro!',
+                text: 'Não foi possível ler este arquivo. Verifique se é um JSON válido.',
+                icon: 'error',
+                confirmButtonColor: '#4361EE',
+                background: '#1e1e1e',
+                color: '#ffffff'
+});
             } finally {
-                // Esconde o loading independente de dar erro ou sucesso
                 loading.style.display = 'none';
             }
         }, 1500);
