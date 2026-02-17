@@ -3,6 +3,12 @@ const modal = document.getElementById('modal-container');
 const btnSalvar = document.getElementById('salvar-btn');
 const tabelaBody = document.querySelector('table tbody');
 
+// Criador de formato de moeda brasileira
+const formatadorMoeda = new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+});
+
 // Função para abrir o modal
 btnAbrirModal.onclick = () => {
     modal.style.display = 'flex';
@@ -61,7 +67,7 @@ function renderizarTudo() {
         if (transacao.tipo === 'entrada') {
             totalEntradas += transacao.valor;
         } else {
-            totalSaidas += transacao.valor;
+            totalSaidas  += transacao.valor;
         }
 
         // Adiciona a linha na tabela
@@ -116,7 +122,9 @@ function renderizarTudo() {
             <td>${transacao.nome}</td>
             <td>${transacao.categoria}</td>
             <td>${transacao.data}</td>
-            <td class="${classeCor}">${transacao.tipo === 'saida' ? '-' : ''} R$ ${transacao.valor.toFixed(2)}</td>
+            <td class="${classeCor}">
+                ${transacao.tipo === 'saida' ? '-' : ''} ${formatadorMoeda.format(transacao.valor)}
+            </td>
             <td>
                 <button class="btn-delete" onclick="deletarTransacao(${transacao.id})">
                     <i data-lucide="trash-2"></i>
@@ -128,12 +136,12 @@ function renderizarTudo() {
     });
 
     lucide.createIcons();
-
-    document.querySelector('.card-in .value').innerText = `R$ ${totalEntradas.toFixed(2)}`;
-    document.querySelector('.card-out .value').innerText = `R$ ${totalSaidas.toFixed(2)}`;
     
     const saldoFinal = totalEntradas - totalSaidas;
-    document.querySelector('.card .value').innerText = `R$ ${saldoFinal.toFixed(2)}`;
+ 
+    document.querySelector('.card-in .value').innerText = formatadorMoeda.format(totalEntradas);
+    document.querySelector('.card-out .value').innerText = formatadorMoeda.format(totalSaidas);
+    document.querySelector('.card .value').innerText = formatadorMoeda.format(totalEntradas - totalSaidas);
 }
 
 // --- FUNÇÃO PARA DELETAR (ESTILIZADA) ---
