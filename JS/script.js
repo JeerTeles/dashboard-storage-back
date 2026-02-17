@@ -254,7 +254,10 @@ let alteracoesPendentes = false;
 
 // 2. Função para ativar o alerta visual
 function atualizarStatusBackup(pendente) {
-    alteracoesPendentes = pendente;
+   alteracoesPendentes = pendente;
+   // Salva o status para o navegador lembrar depois do F5
+   localStorage.setItem('status_backup', pendente);
+
    const btnExportar = document.getElementById('btn-exportar');
 
     if (alteracoesPendentes) {
@@ -262,6 +265,14 @@ function atualizarStatusBackup(pendente) {
     } else {
         btnExportar.classList.remove('atencao-backup');
     }   
+}
+
+function verificarAlertaAoCarregar() {
+    // Busca se existe um alerta pendente salvo
+    const statusSalvo = localStorage.getItem('status_backup') === 'true';
+    if (statusSalvo) {
+        atualizarStatusBackup(true);
+    }
 }
 
 // Autorization Google email
@@ -306,6 +317,9 @@ window.onload = function () {
     if (nomeSalvo) {
         atualizarSaudacaoReal(nomeSalvo);
     }
+
+    // 3. 🔥 O SEGREDO: Verifica se o botão de exportar deve estar laranja
+    verificarAlertaAoCarregar();
 }
 
 function atualizarSaudacaoReal(nome) {
@@ -314,7 +328,7 @@ function atualizarSaudacaoReal(nome) {
     document.getElementById('saudacao').innerText = `${cumprimento}, ${nome}`;
 }
 
-window.onload = function () {
+/*window.onload = function () {
   google.accounts.id.initialize({
     client_id: "123536121301-m3v9o2c9ntcbrev5ra6nqv1nq1iocost.apps.googleusercontent.com",
     callback: handleCredentialResponse
@@ -324,7 +338,7 @@ window.onload = function () {
     document.getElementById("buttonDiv"), // Crie uma <div id="buttonDiv"> no HTML
     { theme: "outline", size: "large" }
   );
-};
+};*/
 
 function handleCredentialResponse(response) {
   // Aqui vamos decodificar o nome do usuário
