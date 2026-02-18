@@ -100,7 +100,17 @@ function renderizarTudo() {
  
     document.querySelector('.card-in .value').innerText = formatadorMoeda.format(totalEntradas);
     document.querySelector('.card-out .value').innerText = formatadorMoeda.format(totalSaidas);
-    document.querySelector('.card .value').innerText = formatadorMoeda.format(totalEntradas - totalSaidas);
+    document.querySelector('.card .value').innerText = formatadorMoeda.format(saldoFinal);
+
+    // Selecionamos o elemento do valor do saldo
+    const elementoSaldo = document.querySelector('.card .value');
+
+    // 🔥 Lógica de cor dinâmica:
+    if (saldoFinal < 0) {
+        elementoSaldo.style.color = "#E71D36"; // Vermelho (mesma cor das saídas)
+    } else {
+        elementoSaldo.style.color = "#2EC4B6"; // Verde (mesma cor das entradas)
+    }
 }
 
 // 5. Chamada inicial ao abrir a página
