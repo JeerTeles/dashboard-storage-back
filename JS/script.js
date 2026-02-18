@@ -108,9 +108,14 @@ function renderizarTudo() {
     // 🔥 Lógica de cor dinâmica:
     if (saldoFinal < 0) {
         elementoSaldo.style.color = "#E71D36"; // Vermelho (mesma cor das saídas)
-    } else {
+    } else if(saldoFinal > 0){
         elementoSaldo.style.color = "#2EC4B6"; // Verde (mesma cor das entradas)
+    }else {
+        elementoSaldo.style.color = "#000000";
     }
+    
+
+   
 }
 
 // 5. Chamada inicial ao abrir a página
