@@ -71,16 +71,18 @@ function renderizarTudo() {
             totalSaidas += transacao.valor;
         }
 
-        // 2. Criação da linha na tabela (como já estávamos fazendo)
         const novaLinha = document.createElement('tr');
         const classeCor = transacao.tipo === 'entrada' ? 'text-green' : 'text-red';
+
+        // 1. Primeiro, formatamos o valor absoluto (sempre positivo)
+        const valorFormatado = formatadorMoeda.format(transacao.valor);
 
         novaLinha.innerHTML = `
             <td>${transacao.nome}</td>
             <td>${transacao.categoria}</td>
             <td>${transacao.data}</td>
             <td class="${classeCor}">
-                ${transacao.tipo === 'saida' ? '-' : ''} ${formatadorMoeda.format(transacao.valor)}
+                ${transacao.tipo === 'saida' ? 'R$ -' + valorFormatado.replace('R$', '').trim() : valorFormatado}
             </td>
             <td>
                 <button class="btn-delete" onclick="deletarTransacao(${transacao.id})">
@@ -98,7 +100,22 @@ function renderizarTudo() {
  
     document.querySelector('.card-in .value').innerText = formatadorMoeda.format(totalEntradas);
     document.querySelector('.card-out .value').innerText = formatadorMoeda.format(totalSaidas);
-    document.querySelector('.card .value').innerText = formatadorMoeda.format(totalEntradas - totalSaidas);
+    document.querySelector('.card .value').innerText = formatadorMoeda.format(saldoFinal);
+
+    // Selecionamos o elemento do valor do saldo
+    const elementoSaldo = document.querySelector('.card .value');
+
+    // 🔥 Lógica de cor dinâmica:
+    if (saldoFinal < 0) {
+        elementoSaldo.style.color = "#E71D36"; // Vermelho (mesma cor das saídas)
+    } else if(saldoFinal > 0){
+        elementoSaldo.style.color = "#2EC4B6"; // Verde (mesma cor das entradas)
+    }else {
+        elementoSaldo.style.color = "#000000";
+    }
+    
+
+   
 }
 
 // 5. Chamada inicial ao abrir a página
@@ -308,18 +325,6 @@ function atualizarSaudacaoReal(nome) {
     let cumprimento = hora < 12 ? "Bom dia" : hora < 18 ? "Boa tarde" : "Boa noite";
     document.getElementById('saudacao').innerText = `${cumprimento}, ${nome}`;
 }
-
-/*window.onload = function () {
-  google.accounts.id.initialize({
-    client_id: "123536121301-m3v9o2c9ntcbrev5ra6nqv1nq1iocost.apps.googleusercontent.com",
-    callback: handleCredentialResponse
-  });
-
-  google.accounts.id.renderButton(
-    document.getElementById("buttonDiv"), // Crie uma <div id="buttonDiv"> no HTML
-    { theme: "outline", size: "large" }
-  );
-};*/
 
 function handleCredentialResponse(response) {
   // Aqui vamos decodificar o nome do usuário
