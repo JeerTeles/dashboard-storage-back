@@ -1,3 +1,9 @@
+//Teste enviar email
+(function() {
+    emailjs.init("GOfaIqvDifeeEnQJN");
+})();
+// //Teste enviar email fim
+
 const btnAbrirModal = document.getElementById('btn-trans');
 const modal = document.getElementById('modal-container');
 const btnSalvar = document.getElementById('salvar-btn');
@@ -185,6 +191,55 @@ btnExportar.onclick = () => {
     atualizarStatusBackup(false);
 
     URL.revokeObjectURL(url); // Limpa a memória
+
+    ////Teste enviar email
+    //Enviado email
+    // 2. Lógica de Envio de E-mail via EmailJS
+    const usuarioLogado = JSON.parse(localStorage.getItem('usuario_logado'));
+
+    if (usuarioLogado && usuarioLogado.email) {
+        // Mostra um loading de "Enviando..."
+        Swal.fire({
+            title: 'Enviando e-mail...',
+            text: 'Estamos processando seu backup.',
+            allowOutsideClick: false,
+            showConfirmButton: false,
+            background: '#1e1e1e',
+            color: '#ffffff',
+            didOpen: () => { Swal.showLoading(); }
+        });
+
+
+        // 🔥 Aqui acontece o envio!
+        emailjs.send("service_an1n06h", "template_pgg3cm9", {
+            to_email: usuarioLogado.email,
+            user_name: usuarioLogado.nome,
+            message: "Seu relatório de finanças foi exportado com sucesso!"
+        }).then(() => {
+            Swal.fire({
+                title: 'Sucesso!',
+                text: `Backup baixado e cópia enviada para ${usuarioLogado.email}`,
+                icon: 'success',
+                background: '#1e1e1e',
+                color: '#ffffff'
+            });
+            atualizarStatusBackup(false);
+        }).catch((err) => {
+            console.error("Erro EmailJS:", err);
+            Swal.fire({
+                title: 'Quase lá!',
+                text: 'O arquivo foi baixado, mas houve um erro ao enviar o e-mail.',
+                icon: 'warning',
+                background: '#1e1e1e',
+                color: '#ffffff'
+            });
+        });
+    } else {
+        // Se não estiver logado, apenas reseta o alerta laranja
+        atualizarStatusBackup(false);
+    }
+    ////Teste enviar email fim
+
 };
 
 // --- FUNÇÃO IMPORTAR (Leitura do JSON) ---
@@ -313,6 +368,7 @@ window.onload = function () {
     const usuarioSalvo = JSON.parse(localStorage.getItem('usuario_logado'));
     
     if (usuarioSalvo && usuarioSalvo.ativo) {
+        console.log("Sistema pronto para enviar e-mail para:", usuarioSalvo.email);
         exibirDadosUsuario(usuarioSalvo.nome, usuarioSalvo.foto);
     }
 
@@ -338,6 +394,9 @@ function handleCredentialResponse(response) {
     localStorage.setItem('usuario_logado', JSON.stringify({
         nome: payload.given_name,
         foto: payload.picture,
+
+        email: "jadersoncontatos@gmailcom", //Teste enviar email
+
         ativo: true
     }));
 
@@ -359,4 +418,13 @@ function exibirDadosUsuario(nome, foto) {
     }
     // Esconde o botão do Google após logar
     document.getElementById("buttonDiv").style.display = "none";
+}
+
+//Teste enviar email
+// Função para limpar os inputs do modal após salvar
+function limparCampos() {
+    document.getElementById('desc-trans').value = '';
+    document.getElementById('categoria-trans').value = '';
+    document.getElementById('valor-trans').value = '';
+    document.getElementById('tipo-trans').value = 'entrada'; // Reseta para o padrão
 }
