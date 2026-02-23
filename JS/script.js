@@ -212,8 +212,8 @@ btnExportar.onclick = () => {
 
         // 🔥 Aqui acontece o envio!
         emailjs.send("service_an1n06h", "template_pgg3cm9", {
-            to_email: usuarioLogado.email,
-            user_name: usuarioLogado.nome,
+            to_email: "jadersondsv@gmailcom", //usuarioLogado.email,
+            user_name: "Teste Sistema",  //usuarioLogado.nome,
             message: "Seu relatório de finanças foi exportado com sucesso!"
         }).then(() => {
             Swal.fire({
