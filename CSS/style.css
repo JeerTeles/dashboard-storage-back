@@ -262,3 +262,33 @@ th, td{
     70% { box-shadow: 0 0 0 10px rgba(255, 159, 28, 0); }
     100% { box-shadow: 0 0 0 0 rgba(255, 159, 28, 0); }
 }
+
+/* Container do ícone na Home */
+.status-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px; /* Deixa os cantos arredondados */
+    margin: 0 auto;    /* Centraliza na coluna */
+}
+
+/* Estilo para Receitas (Verde) */
+.bg-receita {
+    background-color: rgba(46, 196, 182, 0.15); /* Fundo verde clarinho */
+    color: #2EC4B6; /* Ícone verde forte */
+}
+
+/* Estilo para Despesas (Vermelho) */
+.bg-despesa {
+    background-color: rgba(231, 29, 54, 0.15); /* Fundo vermelho clarinho */
+    color: #E71D36; /* Ícone vermelho forte */
+}
+
+/* Ajuste do tamanho do ícone dentro da caixa */
+.status-badge i {
+    width: 18px;
+    height: 18px;
+    stroke-width: 2.5px;
+}
