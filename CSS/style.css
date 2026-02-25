@@ -146,8 +146,6 @@ th, td{
     padding: 30px;
 }
 
-
-/* Loading*/
 /* Container do Loading (cobre a tela toda) */
 #loading-overlay {
     position: fixed;
@@ -155,8 +153,8 @@ th, td{
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(255, 255, 255, 0.8); /* Fundo branco semi-transparente */
-    display: none; /* Escondido por padrão */
+    background: rgba(255, 255, 255, 0.8); 
+    display: none; 
     justify-content: center;
     align-items: center;
     z-index: 9999; /* Garante que fica por cima de tudo */
@@ -270,25 +268,74 @@ th, td{
     justify-content: center;
     width: 32px;
     height: 32px;
-    border-radius: 8px; /* Deixa os cantos arredondados */
+    border-radius: 8px; 
     margin: 0 auto;    /* Centraliza na coluna */
 }
 
 /* Estilo para Receitas (Verde) */
 .bg-receita {
-    background-color: rgba(46, 196, 182, 0.15); /* Fundo verde clarinho */
-    color: #2EC4B6; /* Ícone verde forte */
+    background-color: rgba(46, 196, 182, 0.15); 
+    color: #2EC4B6;
 }
 
 /* Estilo para Despesas (Vermelho) */
 .bg-despesa {
-    background-color: rgba(231, 29, 54, 0.15); /* Fundo vermelho clarinho */
-    color: #E71D36; /* Ícone vermelho forte */
+    background-color: rgba(231, 29, 54, 0.15); 
+    color: #E71D36;
 }
 
 /* Ajuste do tamanho do ícone dentro da caixa */
 .status-badge i {
     width: 18px;
     height: 18px;
+    stroke-width: 2.5px;
+}
+
+/* Botão de Logout */
+.btn-logout {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: rgba(231, 29, 54, 0.1);
+    color: #E71D36;
+    border: 1px solid #E71D36;
+    padding: 6px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    margin-left: 15px;
+}
+
+.btn-logout:hover {
+    background-color: #E71D36;
+    color: #ffffff;
+}
+
+/* Container do ícone (Badge) na Home */
+.status-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    border-radius: 10px;
+    margin: 0 auto;
+}
+
+/* Cores para o Badge */
+.bg-receita {
+    background-color: rgba(46, 196, 182, 0.15);
+    color: #2EC4B6;
+}
+
+.bg-despesa {
+    background-color: rgba(231, 29, 54, 0.15);
+    color: #E71D36;
+}
+
+.status-badge i {
+    width: 20px;
+    height: 20px;
     stroke-width: 2.5px;
 }
