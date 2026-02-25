@@ -84,12 +84,23 @@ function renderizarTudo() {
         // 2. Define o ícone e o comportamento com base na página
         let conteudoAcao = '';
 
-        if (isIndexPage) {
+        /*if (isIndexPage) {
             // Na Home: Ícone de Receita ou Despesa (Sem botão e sem função de deletar)
             const iconeStatus = transacao.tipo === 'entrada' ? 'trending-up' : 'trending-down';
             conteudoAcao = `<i data-lucide="${iconeStatus}" class="${classeCor}"></i>`;
+        */
+        if (isIndexPage) {
+            // Criamos uma "caixinha" (span ou div) para o ícone
+            const tipoClasse = transacao.tipo === 'entrada' ? 'bg-receita' : 'bg-despesa';
+            const iconeStatus = transacao.tipo === 'entrada' ? 'trending-up' : 'trending-down';
+            
+            conteudoAcao = `
+                <div class="status-badge ${tipoClasse}">
+                    <i data-lucide="${iconeStatus}"></i>
+                </div>
+            `;
         } else {
-            // Nas outras páginas: Mantém o botão de lixeira com a função de deletar
+        // Nas outras páginas: Mantém o botão de lixeira com a função de deletar
             conteudoAcao = `
                 <button class="btn-delete" onclick="deletarTransacao(${transacao.id})">
                     <i data-lucide="trash-2"></i>
