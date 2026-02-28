@@ -17,7 +17,9 @@
 }
 
 #menu{
-    padding: 20px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 #menu a {
@@ -36,12 +38,27 @@
     filter: brightness(0.9);
 }
 
+#menu ul {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
 #menu ul li{
     list-style: none;
     padding: 0;
     border-radius: 8px; 
     color: white;
     cursor: pointer;
+}
+
+/* 3. A MÁGICA: Empurramos o item do Modo Escuro para o final */
+#li-dark-mode {
+    margin-top: auto; /* Isso empurra o item para o fundo da lista */
+    padding-bottom: 20px; /* Um respiro no final da tela */
 }
 
 main{
@@ -290,27 +307,6 @@ th, td{
     height: 18px;
     stroke-width: 2.5px;
 }
-
-/* Botão de Logout 
-.btn-logout {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background-color: rgba(231, 29, 54, 0.1);
-    color: #E71D36;
-    border: 1px solid #E71D36;
-    padding: 6px 12px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: all 0.3s ease;
-    margin-left: 15px;
-}
-
-.btn-logout:hover {
-    background-color: #E71D36;
-    color: #ffffff;
-}*/
 
 /* Container do ícone (Badge) na Home */
 .status-badge {
