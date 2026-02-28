@@ -1,7 +1,6 @@
-Trocar o Ola, estudante por Olá, nome do perfil login
-Organizar os numeros decinais
-permaneçer o alerta no botão exporta quando navegar pelo menus
-Estilizar o alert dados importado com sucesso!
-Ver acesso a verificação google
+Estilizar botão Sair
+fazer modo escuro
+Colocar botar sair e modo escuro no pé(botton) do menu
 
-Fazer paginas: Home, Transações, relatorios, configurações
+
+media query

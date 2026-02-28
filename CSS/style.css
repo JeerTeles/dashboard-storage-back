@@ -291,7 +291,7 @@ th, td{
     stroke-width: 2.5px;
 }
 
-/* Botão de Logout */
+/* Botão de Logout 
 .btn-logout {
     display: flex;
     align-items: center;
@@ -310,7 +310,7 @@ th, td{
 .btn-logout:hover {
     background-color: #E71D36;
     color: #ffffff;
-}
+}*/
 
 /* Container do ícone (Badge) na Home */
 .status-badge {
