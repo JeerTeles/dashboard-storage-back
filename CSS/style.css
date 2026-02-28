@@ -335,3 +335,51 @@ th, td{
     height: 20px;
     stroke-width: 2.5px;
 }
+
+/* Dark mode */
+/*Defina as cores para o modo escuro*/
+body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+body.dark-mode aside {
+    background-color: #1e1e1e;
+}
+
+body.dark-mode .card, 
+body.dark-mode .card-in, 
+body.dark-mode .card-out,
+body.dark-mode .modal-content {
+    background-color: #252525;
+    color: #ffffff;
+}
+
+
+/* Ajuste na tabela para o modo escuro */
+body.dark-mode table thead {
+    background-color: #333333;
+}
+
+body.dark-mode table tbody tr {
+    border-bottom: 1px solid #444444;
+}
+
+body {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
+/* Garante que o ícone e o texto mudem de cor suavemente no hover */
+#li-dark-mode a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s ease;
+}
+
+#li-dark-mode a:hover {
+    color: #ff9f1c; /* Uma cor de destaque (laranja/amarelo) ao passar o mouse */
+}
