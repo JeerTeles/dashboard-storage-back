@@ -396,7 +396,7 @@ function exibirDadosUsuario(nome, foto) {
 }
 
 // logica logout
-// Função para exibir dados do usuário e mostrar botão de sair
+/* // Função para exibir dados do usuário e mostrar botão de sair
 function exibirDadosUsuario(nome, foto) {
     const elementoSaudacao = document.getElementById('saudacao');
     const btnLogout = document.getElementById('btn-logout');
@@ -435,4 +435,4 @@ btnLogout.onclick = () => {
             window.location.reload();
         }
     });
-};
+};*/
