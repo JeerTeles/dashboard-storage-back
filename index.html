@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="CSS/style.css">
     <title>Dashboard</title>
 </head>
-<body>
+<body class="dark-mode">
     <div id="loading-overlay">
     <div class="spinner"></div>
     <span>Processando dados...</span>
@@ -42,8 +42,8 @@
                 </a>
             </li>
             <input type="file" id="importar-arquivo" style="display: none;" accept=".json">
-            <li id="li-dark-mode" itemid="toggle-dark">
-                <a href="#">
+            <li id="li-dark-mode">
+                <a href="#" id="toggle-dark">
                     <i data-lucide="moon"></i>
                     <span>Modo escuro</span>
                 </a>

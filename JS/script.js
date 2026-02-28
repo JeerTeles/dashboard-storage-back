@@ -352,6 +352,12 @@ window.onload = function () {
 
     // 3. 🔥 O SEGREDO: Verifica se o botão de exportar deve estar laranja
     verificarAlertaAoCarregar();
+    
+    // Inicializa os ícones do Lucide
+    lucide.createIcons();
+
+    // 🔥 Carrega o modo escuro salvo
+    carregarTemaSalvo();
 }
 
 function atualizarSaudacaoReal(nome) {
@@ -394,3 +400,56 @@ function exibirDadosUsuario(nome, foto) {
     // Esconde o botão do Google após logar
     document.getElementById("buttonDiv").style.display = "none";
 }
+
+
+// Dark mode
+// Seleciona o botão de toggle
+const btnDarkMode = document.getElementById('toggle-dark');
+const body = document.body;
+
+// 1. Função que alterna o modo escuro
+function alternarModoEscuro() {
+    body.classList.toggle('dark-mode');
+    
+    // Verifica se o modo escuro está ativo e salva no LocalStorage
+    const isDarkMode = body.classList.contains('dark-mode');
+    localStorage.setItem('tema_escuro', isDarkMode);
+    
+    // Atualiza o ícone (opcional: mudar de lua para sol)
+    atualizarIconeTema(isDarkMode);
+}
+
+// 2. Função para atualizar o ícone dinamicamente
+function atualizarIconeTema(isDark) {
+    // Selecionamos o link que contém o ícone e o texto
+    const linkToggle = document.getElementById('toggle-dark');
+    const novoIcone = isDark ? 'sun' : 'moon';
+    const novoTexto = isDark ? 'Modo Claro' : 'Modo Escuro';
+
+    // 1. Atualizamos o HTML interno com o novo atributo data-lucide
+    linkToggle.innerHTML = `
+        <i data-lucide="${novoIcone}"></i>
+        <span>${novoTexto}</span>
+    `;
+
+    // 2. 🔥 O SEGREDO: Pedimos ao Lucide para ler o novo <i> e desenhar o ícone
+    lucide.createIcons();
+}
+
+// 3. Verifica a preferência salva ao carregar a página
+function carregarTemaSalvo() {
+    const temaSalvo = localStorage.getItem('tema_escuro') === 'true';
+    if (temaSalvo) {
+        body.classList.add('dark-mode');
+        atualizarIconeTema(true);
+    }
+}
+
+// Evento de clique
+btnDarkMode.addEventListener('click', (e) => {
+    e.preventDefault(); // Evita que o link '#' recarregue a página
+    alternarModoEscuro();
+});
+
+// Chame a verificação inicial no final do seu window.onload
+carregarTemaSalvo();
