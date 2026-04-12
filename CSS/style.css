@@ -383,3 +383,15 @@ body {
 #li-dark-mode a:hover {
     color: #ff9f1c; /* Uma cor de destaque (laranja/amarelo) ao passar o mouse */
 }
+
+body.dark-mode .btn-delete i,
+body.dark-mode .btn-delete svg {
+    color: #ffffff !important;
+    stroke: #ffffff !important; /* Lucide usa stroke para os desenhos */
+}
+
+body.dark-mode .btn-delete:hover i,
+body.dark-mode .btn-delete:hover svg {
+    color: #ff4d4d !important;
+    stroke: #ff4d4d !important;
+}
