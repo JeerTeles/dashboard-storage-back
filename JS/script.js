@@ -112,7 +112,6 @@ function renderizarTudo() {
                 </button>
             `;
         }
-        //00
 
         novaLinha.innerHTML = `
             <td>${transacao.nome}</td>
@@ -121,7 +120,6 @@ function renderizarTudo() {
             <td class="${classeCor}">
                 ${transacao.tipo === 'saida' ? 'R$ -' + valorFormatado.replace('R$', '').trim() : valorFormatado}
             </td>
-            <td>
             <td style="text-align: center;">
                 ${conteudoAcao}
             </td>

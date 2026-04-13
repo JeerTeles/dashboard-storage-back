@@ -1,5 +1,8 @@
-fazer modo escuro
-Colocar botar modo escuro no pé(botton) do menu
+Custmunizar botão adicionar
+
+Modo escuro:
+Trocar cor do menu;
+Trocar do bloco saudação;
 
 
 media query
