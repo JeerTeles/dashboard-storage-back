@@ -98,6 +98,7 @@ header {
     background-color: #4361EE;
     color: white;
     width: 150px;
+    height: 30px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -343,7 +344,15 @@ body.dark-mode {
     color: #ffffff;
 }
 
-body.dark-mode aside {
+body.dark-mode h1#saudacao {
+    color: #ffffff;
+}
+
+body.dark-mode header {
+    background-color: #121212;
+}
+
+body.dark-mode #aside {
     background-color: #1e1e1e;
 }
 
