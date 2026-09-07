@@ -451,3 +451,26 @@ btnDarkMode.addEventListener('click', (e) => {
 
 // Chame a verificação inicial no final do seu window.onload
 carregarTemaSalvo();
+
+
+// ==========================================================================
+// LÓGICA DO MENU HAMBÚRGUER MOBILE
+// ==========================================================================
+const menuToggle = document.getElementById('menu-toggle');
+const menuClose = document.getElementById('menu-close');
+const asideMenu = document.getElementById('aside');
+const menuOverlay = document.getElementById('menu-overlay');
+
+// Função para abrir o menu
+menuToggle.onclick = () => {
+    asideMenu.classList.add('open');
+};
+
+// Função para fechar o menu
+function fecharMenuMobile() {
+    asideMenu.classList.remove('open');
+}
+
+// Fecha ao clicar no 'X' ou na camada escura de fundo
+menuClose.onclick = fecharMenuMobile;
+menuOverlay.onclick = fecharMenuMobile;

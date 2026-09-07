@@ -8,6 +8,7 @@
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="CSS/queries.css">
     <title>Dashboard</title>
 </head>
 
@@ -16,7 +17,7 @@
         <div class="spinner"></div>
         <span>Processando dados...</span>
     </div>
-    <aside id="aside">
+   <!-- <aside id="aside">
         <nav id="menu">
             <ul>
                 <li>
@@ -52,7 +53,67 @@
                 </li>
             </ul>
         </nav>
-    </aside>
+    </aside> -->
+
+    <button type="button" id="menu-toggle" class="menu-toggle">
+        <i data-lucide="menu"></i>
+    </button>
+
+    <div id="menu-overlay" class="menu-overlay"></div>
+
+    <aside id="aside">
+        <button type="button" id="menu-close" class="menu-close">
+            <i data-lucide="x"></i>
+        </button>
+
+        <nav id="menu">
+            <ul>
+                <li>
+                    <a id="ts" href="index.html">
+                        <i data-lucide="home"></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="HTML/transacoes.html">
+                        <i data-lucide="arrow-right-left"></i>
+                        <span>Transações</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i data-lucide="bar-chart-3"></i>
+                        <span>Relatórios</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i data-lucide="settings"></i>
+                        <span>Configurações</span>
+                    </a>
+                </li>
+                <li id="btn-exportar">
+                    <a href="#">
+                        <i data-lucide="download"></i>
+                        <span>Exportar Dados</span>
+                    </a>
+                </li>
+                <li id="btn-importar">
+                    <a href="#">
+                        <i data-lucide="upload"></i>
+                        <span>Importar Dados</span>
+                    </a>
+                </li>
+                <li id="li-dark-mode">
+                    <a href="#" id="toggle-dark">
+                        <i data-lucide="moon"></i>
+                        <span>Modo Escuro</span>
+                    </a>
+                </li>
+            </ul>
+            <input type="file" id="importar-arquivo" style="display: none;" accept=".json">
+        </nav>
+    </aside>    
 
     <main>
         <header>

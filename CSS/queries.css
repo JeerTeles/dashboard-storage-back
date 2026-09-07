@@ -1,0 +1,22 @@
+@media screen and (min-width: 500px) and (max-width: 667px) {
+    body {
+        overflow-x: hidden;
+    }
+
+    main {
+        display: flex;
+        flex-direction: column;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    table {
+        width: 100%;
+        margin: 20px 0;
+    }
+
+
+    thead {
+        display: table-header-group;
+    }
+}

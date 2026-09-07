@@ -404,3 +404,85 @@ body.dark-mode .btn-delete:hover svg {
     color: #ff4d4d !important;
     stroke: #ff4d4d !important;
 }
+
+
+/*Media query*
+
+/* ==========================================================================
+   BOTÕES DO MENU MOBILE (Escondidos por padrão no computador)
+   ========================================================================== */
+.menu-toggle, .menu-close {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.menu-toggle i, .menu-close i {
+    width: 30px;
+    height: 30px;
+    color: #ffffff; /* Ajuste para a cor do seu texto */
+}
+
+menu-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+}
+
+/* ==========================================================================
+   MEDIA QUERY: Regras aplicadas APENAS em telas de Celular/Tablet
+   ========================================================================== */
+@media (max-width: 768px) {
+    /* Mostra o botão hambúrguer no header ou topo */
+    .menu-toggle {
+        display: block;
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        background-color: #4361EE; /* Cor de destaque para o botão */
+        padding: 8px;
+        border-radius: 8px;
+    }
+
+    /* Mostra o botão de fechar dentro do menu */
+    .menu-close {
+        display: block;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+    }
+
+    /* Transforma o Aside em uma gaveta oculta na esquerda */
+    #aside {
+        position: fixed;
+        top: 0;
+        left: -275px; /* Largura do menu negativa para começar escondido */
+        width: 275px;
+        height: 100vh;
+        z-index: 999;
+        transition: left 0.3s ease-in-out; /* Animação suave ao deslizar */
+        box-shadow: 5px 0 15px rgba(0,0,0,0.5);
+    }
+
+    /* Classe que o JavaScript vai adicionar para abrir o menu */
+    #aside.open {
+        left: 0;
+    }
+
+    /* Exibe o fundo escuro quando o menu estiver aberto */
+    #aside.open ~ .menu-overlay {
+        display: block;
+    }
+
+    /* Ajuste no container principal para não ficar esmagado pelo botão fixo */
+    main {
+        padding-top: 80px !important;
+    }
+}
